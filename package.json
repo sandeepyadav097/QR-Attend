@@ -5,6 +5,7 @@
   "name": "",
   "version": "",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mysql": "^2.15.0"
   }
 }
