@@ -28,7 +28,7 @@ router.post('/createClass', (req, res,next) => {
     //     console.log('The solution is: ', results);
     //   })
 
-    var sql1='create table attendance'+Class+'( student_id int references student_details(student_id), attendance_date date , day varchar(10) not null, '+sub1+'  varchar(10) references subject_codes(subject_code), '+sub2+'  varchar(10) references subject_codes(subject_code), '+sub3+'  varchar(10) references subject_codes(subject_code), '+sub4+'  varchar(10) references subject_codes(subject_code), '+sub5+'  varchar(10) references subject_codes(subject_code),  primary key(student_id,attendance_date)   );'
+    var sql1='create table attendance'+Class+'( student_id int references student_details(student_id), attendance_date date , day varchar(10) not null, '+sub1+'  varchar(10) references subject_codes(subject_code), '+sub2+'  varchar(10) references subject_codes(subject_code), '+sub3+'  varchar(10) references subject_codes(subject_code), '+sub4+'  varchar(10) references subject_codes(subject_code), '+sub5+'  varchar(10) references subject_codes(subject_code),class varchar(10) references classes(class),  primary key(student_id,attendance_date)   );'
         
 
     db.query(sql1, function (error, results, fields) {
@@ -78,10 +78,12 @@ router.post('/subjectCodes', (req, res,next) => {
 router.post('/subjectTeacherClass', (req, res,next) => {
    
     var id = parseInt(req.body.id);
-    var code= req.body.name;
+    var code= req.body.code;
     var Class=req.body.class;
 
-     var sql = `insert into subject_teacher_class values(?);`;
+    console.log(req.body.class);
+
+     var sql = `insert into subject_teacher_class values(?,?,?);`;
     
     db.query(sql,[id,code,Class], function (error, results, fields) {
       if (error) throw error;
@@ -99,7 +101,7 @@ router.post('/teacherTimeTable', (req, res,next) => {
     var Class4 = req.body.class4;
     var Class5 = req.body.class5;
     var Class6 = req.body.class6;
-     var sql = `insert into teacher_time_table values(?,?,?,?,?,?,?,?);`;
+     var sql = `insert into teacher_time_table values (?,?,?,?,?,?,?,?)`;
     
     db.query(sql,[id,day,Class1,Class2,Class3,Class4,Class5,Class6], function (error, results, fields) {
       if (error) throw error;
