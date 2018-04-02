@@ -4,6 +4,7 @@ const db = require('./db');
 const admin = require('./api/routes/admin')
 const teacher=require('./api/routes/teacher')
 const student=require('./api/routes/student')
+const auth=require('./api/routes/auth')
 const morgan = require('morgan')
 const app = express();
 
@@ -21,7 +22,8 @@ app.get('/',(req,res)=>{
 })
 app.use('/api/routes/admin',admin);
 app.use('/api/routes/teacher',teacher);
-app.use('/api/routes/student',student)
+app.use('/api/routes/student',student);
+//app.use('/api/routes/auth',auth);
 
 
 app.listen(2678, () => console.log('Server started at http://localhost:2678'))
