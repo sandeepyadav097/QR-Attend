@@ -5,6 +5,7 @@ const admin = require('./api/routes/admin')
 const teacher=require('./api/routes/teacher')
 const student=require('./api/routes/student')
 const auth=require('./api/routes/auth')
+const detailsSelect=require('./api/routes/detailsSelect')
 const morgan = require('morgan')
 const app = express();
 
@@ -24,7 +25,8 @@ app.use('/api/routes/admin',admin);
 app.use('/api/routes/teacher',teacher);
 app.use('/api/routes/student',student);
 app.use('/api/routes/auth',auth);
+app.use('/api/routes/detailsSelect',detailsSelect);
 
 
-app.listen(9671, () => console.log('Server started at http://localhost:9671'))
+app.listen(4781, () => console.log('Server started at http://localhost:2678'))
 ///
