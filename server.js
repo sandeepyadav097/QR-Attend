@@ -23,8 +23,8 @@ app.get('/',(req,res)=>{
 app.use('/api/routes/admin',admin);
 app.use('/api/routes/teacher',teacher);
 app.use('/api/routes/student',student);
-//app.use('/api/routes/auth',auth);
+app.use('/api/routes/auth',auth);
 
 
-app.listen(2678, () => console.log('Server started at http://localhost:2678'))
+app.listen(9671, () => console.log('Server started at http://localhost:9671'))
 ///
