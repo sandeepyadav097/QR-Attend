@@ -28,10 +28,10 @@ router.post('/createClass', (req, res,next) => {
     //     console.log('The solution is: ', results);
     //   })
 
-    var sql1='create table attendance'+Class+'( student_id int references student_details(student_id), attendance_date date , day varchar(10) not null, '+sub1+'  varchar(10) references subject_codes(subject_code), '+sub2+'  varchar(10) references subject_codes(subject_code), '+sub3+'  varchar(10) references subject_codes(subject_code), '+sub4+'  varchar(10) references subject_codes(subject_code), '+sub5+'  varchar(10) references subject_codes(subject_code),class varchar(10) references classes(class),  primary key(student_id,attendance_date)   );'
+    var sql1='create table attendance'+Class+'( student_id int references student_details(student_id), attendance_date varchar(10) , day varchar(10) not null, '+sub1+'  varchar(10) default ? references subject_codes(subject_code)  , '+sub2+'  varchar(10) default ?  references subject_codes(subject_code) , '+sub3+'  varchar(10) default ? references subject_codes(subject_code) , '+sub4+'  varchar(10) default ?  references subject_codes(subject_code) , '+sub5+'  varchar(10) default ? references subject_codes(subject_code)  ,  primary key(student_id,attendance_date)   );'
         
 
-    db.query(sql1, function (error, results, fields) {
+    db.query(sql1,['A','A','A','A','A'], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
     })
@@ -49,7 +49,10 @@ router.post('/studentDetails', (req, res,next) => {
       if (error) throw error;
       console.log('The solution is: ', results);
       res.send({success:true})
+   
     })
+
+  
 })
 router.post('/teacherDetails', (req, res,next) => {
    

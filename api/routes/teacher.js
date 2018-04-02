@@ -7,11 +7,12 @@ router.post('/takeAttendance', (req, res,next) => {
     var id = parseInt(req.body.id);
     var date= req.body.date;
     var otp=req.body.otp;
+    var Class=req.res.body.class;
     var complete=0;
 
-     var sql = `insert into otp values(?,?,?,?);`;
+     var sql = `insert into otp values(?,?,?,?,?);`;
     
-    db.query(sql,[id,date,complete,otp], function (error, results, fields) {
+    db.query(sql,[id,date,complete,otp,Class], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
       res.send({success:true})
@@ -32,6 +33,8 @@ router.post('/stopAttendance', (req, res,next) => {
       console.log('The solution is: ', results);
       res.send({success:true})
     })
+
+    
 })
 
 exports=module.exports = router
