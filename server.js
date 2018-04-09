@@ -9,15 +9,69 @@ const detailsSelect=require('./api/routes/detailsSelect')
 const morgan = require('morgan')
 const app = express();
 const bodyParser=require('body-parser');
-
 app.set("view engine", "ejs");
+const cookieParser = require('cookie-parser')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session')
+const MySQLStore = require('express-mysql-session')(session);
+
+
+
 app.use(bodyParser.urlencoded({ extended: true}));
 
 app.use(express.static(__dirname+'/public'));
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(cookieParser())
 db.connect();
+
+var options = {
+  host     : 'localhost',
+  user     : 'root',
+  database : 'dbms_project'
+};
+
+
+var sessionStore = new MySQLStore(options);
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  store: sessionStore,
+  saveUninitialized: false
+ // cookie: { secure: true }
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+
+    var sql = `select id from student_auth where username=? and password=?;`;
+
+    db.query(sql,[username,password], function (error, results, fields) {
+      if (error) throw error;
+      console.log('The solution is: ', results);
+      if(results[0]==null)
+      {
+        return done(null,false);
+         // username and pass not found flash 
+      }
+      else{
+        //res.render('../views/dashboard', {username:username, password:password});
+        return done(null,true);
+      }
+    })
+
+     
+ 
+  }
+));
 
 
 app.get('/hello', function(req,res){
@@ -48,5 +102,5 @@ app.use('/api/routes/student',student);
 app.use('/api/routes/auth',auth);
 app.use('/api/routes/detailsSelect',detailsSelect);
 
-app.listen(3000, () => console.log('Server started at http://localhost:3000'))
+app.listen(3080, () => console.log('Server started at http://localhost:3000'))
 ///
