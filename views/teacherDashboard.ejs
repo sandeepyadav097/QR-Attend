@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+    <script type="text/javascript" src="/instascan.min.js"></script>
+    <script type="text/javascript" src="/qrcode.js"></script>
+    <title><%=username %> Dashboard</title>
+   
+</head>
+<body>
+      <h1 id="hello"><%=username %></h1>
+      <input id="text" type="text" value="hello" style="width:80%" /><br />
+      <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+      
+      <script type="text/javascript">
+      var qrcode = new QRCode(document.getElementById("qrcode"), {
+          width : 300,
+          height : 300
+      });
+      
+      function makeCode () {		
+          var elText = document.getElementById("text");
+          
+          if (!elText.value) {
+              alert("Input a text");
+              elText.focus();
+              return;
+          }
+          
+          qrcode.makeCode(elText.value);
+      }
+      
+      makeCode();
+      
+      $("#text").
+          on("blur", function () {
+              makeCode();
+          }).
+          on("keydown", function (e) {
+              if (e.keyCode == 13) {
+                  makeCode();
+              }
+          });
+      </script>
+      
+      <br>
+</body>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+<script type="text/javascript" src="/dashboard.js"></script>
+</html>

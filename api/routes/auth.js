@@ -25,11 +25,12 @@ router.post('/teacherAuth', (req, res,next) => {
       console.log('The solution is: ', results);
       if(results[0]==null)
       {
-          res.send(null)
+        res.redirect('/teacherLogin')
+         // res.send(null)
       }
       else{
-
-        res.send(results[0])
+        res.render('../views/teacherDashboard', {username:username});
+      
       }
     })
     
@@ -55,7 +56,7 @@ router.post('/studentAuth', (req, res,next) => {
       }
       else{
         //res.render('../views/dashboard', {username:username, password:password});
-        res.render('../views/index s');
+        res.render('../views/studentDashboard', {username:username});
       }
     })
     
