@@ -14,7 +14,7 @@ router.get('/Class',(req,res)=> {
       
     if(results[0]==null)
     {
-        res.send(null);
+        res.send('janwjwnfnfiwiw');
     }
     else{
         res.send(results);
