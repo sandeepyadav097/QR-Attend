@@ -86,10 +86,13 @@ app.get('/',(req,res)=>{
     res.render('login');
 })
 
-app.get('/login', (req, res)=>{
-      res.render('login');
+app.get('/studentlogin', (req, res)=>{
+      res.render('studentLogin');
 });
 
+app.get('/teacherlogin', (req, res)=>{
+      res.render('teacherLogin');
+});
 
 app.get('/views/admin', (req, res)=>{
   res.render('admin');

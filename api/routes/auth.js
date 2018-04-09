@@ -26,11 +26,12 @@ router.post('/teacherAuth', (req, res,next) => {
       console.log('The solution is: ', results);
       if(results[0]==null)
       {
-          res.send(null)
+        res.redirect('/teacherLogin')
+         // res.send(null)
       }
       else{
-
-        res.send(results[0])
+        res.render('../views/teacherDashboard', {username:username});
+      
       }
     })
     
@@ -46,6 +47,7 @@ router.post('/teacherAuth', (req, res,next) => {
 //  //   var id = parseInt(req.body.id);
 //      var sql = `select id from student_auth where username=? and password=?;`;
     
+<<<<<<< HEAD
 //     db.query(sql,[username,password], function (error, results, fields) {
 //       if (error) throw error;
 //       console.log('The solution is: ', results);
@@ -59,6 +61,21 @@ router.post('/teacherAuth', (req, res,next) => {
 //        // res.render('../views/index s');
 //       }
 //     })
+=======
+    db.query(sql,[username,password], function (error, results, fields) {
+      if (error) throw error;
+      console.log('The solution is: ', results);
+      if(results[0]==null)
+      {
+         res.redirect(301, '');
+         // username and pass not found flash 
+      }
+      else{
+        //res.render('../views/dashboard', {username:username, password:password});
+        res.render('../views/studentDashboard', {username:username});
+      }
+    })
+>>>>>>> 1034113a127a4439fbd6a653ef06f7bc18521356
     
 // })
 

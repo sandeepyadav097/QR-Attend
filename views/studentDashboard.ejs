@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%=username %> Dashboard</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+    
+    <script type="text/javascript" src="/instascan.min.js"></script>
+    <script type="text/javascript" src="/qrcode.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+          
+</head>
+<body>
+     
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+             
+           <span><%=username %></span>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="sass.html">Sass</a></li>
+              <li><a href="badges.html">Components</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+            
+     
+<video id="preview" width="50%" height="50%" style="margin:auto"></video>
+<p id='code'>hello </p>
+<script type="text/javascript">
+
+
+  let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+  scanner.addListener('scan', function (content) {
+	console.log(content);
+	document.getElementById('code').innerHTML=content;
+  });
+  Instascan.Camera.getCameras().then(function (cameras) {
+	if (cameras.length==1) {
+	  scanner.start(cameras[0]);
+	} 
+	else if( cameras.length==2)
+	{
+		scanner.start(cameras[1]);
+	}else {
+	  console.error('No cameras found.');
+	}
+  }).catch(function (e) {
+	console.error(e);
+  });
+</script>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+<script type="text/javascript" src="/dashboard.js"></script>
+</html>
