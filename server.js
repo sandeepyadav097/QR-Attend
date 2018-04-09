@@ -48,8 +48,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-passport.use(new LocalStrategy(
+var  myLocalStrategy1=new LocalStrategy(
   function(username, password, done) {
 
     var sql = `select id from student_auth where username=? and password=?;`;
@@ -64,14 +63,64 @@ passport.use(new LocalStrategy(
       }
       else{
         //res.render('../views/dashboard', {username:username, password:password});
-        return done(null,true);
+        return done(null,results[0].id);
       }
     })
 
      
  
   }
-));
+);
+
+var  myLocalStrategy2=new LocalStrategy(
+  function(username, password, done) {
+
+    var sql = `select id from admin_auth where username=? and password=?;`;
+
+    db.query(sql,[username,password], function (error, results, fields) {
+      if (error) throw error;
+      console.log('The solution is: ', results);
+      if(results[0]==null)
+      {
+        return done(null,false);
+         // username and pass not found flash 
+      }
+      else{
+        //res.render('../views/dashboard', {username:username, password:password});
+        return done(null,results[0].id);
+      }
+    })
+
+     
+ 
+  }
+);
+var  myLocalStrategy3=new LocalStrategy(
+  function(username, password, done) {
+
+    var sql = `select id from teacher_auth where username=? and password=?;`;
+
+    db.query(sql,[username,password], function (error, results, fields) {
+      if (error) throw error;
+      console.log('The solution is: ', results);
+      if(results[0]==null)
+      {
+        return done(null,false);
+         // username and pass not found flash 
+      }
+      else{
+        //res.render('../views/dashboard', {username:username, password:password});
+        return done(null,results[0].id);
+      }
+    })
+
+     
+ 
+  }
+);
+passport.use('local.one', myLocalStrategy1);
+passport.use('local.two', myLocalStrategy2);
+passport.use('local.three', myLocalStrategy3);
 
 
 app.get('/hello', function(req,res){
@@ -92,6 +141,9 @@ app.get('/studentlogin', (req, res)=>{
 
 app.get('/teacherlogin', (req, res)=>{
       res.render('teacherLogin');
+});
+app.get('/adminlogin', (req, res)=>{
+  res.render('adminLogin');
 });
 
 app.get('/views/admin', (req, res)=>{

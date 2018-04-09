@@ -4,7 +4,7 @@ const db = require('./../../db')
 
 router.post('/markAttendance', (req, res,next) => {
    
-            var tid=parseInt(req.body.tid);
+            var tid=parseInt(req.user);
             var sid = parseInt(req.body.sid);
             var date= req.body.date;
             var otp=req.body.otp;

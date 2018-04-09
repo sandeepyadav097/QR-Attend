@@ -31,7 +31,7 @@ router.post('/createClass', (req, res,next) => {
     var sql1='create table attendance'+Class+'( student_id int references student_details(student_id), attendance_date varchar(10) , day varchar(10) not null, '+sub1+'  varchar(10) default ? references subject_codes(subject_code)  , '+sub2+'  varchar(10) default ?  references subject_codes(subject_code) , '+sub3+'  varchar(10) default ? references subject_codes(subject_code) , '+sub4+'  varchar(10) default ?  references subject_codes(subject_code) , '+sub5+'  varchar(10) default ? references subject_codes(subject_code)  ,  primary key(student_id,attendance_date)   );'
         
 
-    db.query(sql1,['A','A','A','A','A'], function (error, results, fields) {
+    db.query(sql1,['N','N','N','N','N'], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
     })
