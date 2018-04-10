@@ -14,9 +14,9 @@ router.post('/createClass', (req, res,next) => {
     var sub5=req.body.sub5;
     
 
-     var sql = `insert into classes values(?);`;
+     var sql = `insert into classes values(?,?,?,?,?,?);`;
     
-    db.query(sql,[Class], function (error, results, fields) {
+    db.query(sql,[Class,sub1,sub2,sub3,sub4,sub5], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
     })

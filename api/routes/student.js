@@ -4,8 +4,8 @@ const db = require('./../../db')
 
 router.post('/markAttendance', (req, res,next) => {
    
-            var tid=parseInt(req.user);
-            var sid = parseInt(req.body.sid);
+            
+            var sid = parseInt(req.user);
             var date= req.body.date;
             var otp=req.body.otp;
             var subject=req.body.subject;
@@ -32,20 +32,18 @@ router.post('/markAttendance', (req, res,next) => {
         })
         }
 
-        })
-        
-        })
 
+        console.log(Class+" "+date+" "+otp);
 
-            var sql = `select * from otp where teacher_id=? and attendance_date=? and otpc=? and complete=0`;
+            var sql = `select * from otp where class=? and attendance_date=? and otpc=? and complete=0`;
             // var sql1=`select * from otp where teacher_id=1 and attendance_date='23/3/2018' and otpc='1234' and complete=0`;
             // console.log(tid+" "+sid+" "+date+" "+otp+" "+subject);
             var check=false;
 
-            db.query(sql,[tid,date,otp], function (error, results, fields) {
+            db.query(sql,[Class,date,otp], function (error, results, fields) {
                 check=false;
             if (error) throw error;
-            console.log('The solution is: ', results);
+            console.log('The solution is hhhhhhh: ', results);
             if(!(results[0]==null))
             {
                 check=true;
@@ -61,7 +59,7 @@ router.post('/markAttendance', (req, res,next) => {
             res.send({success:false})
             
             })
-            console.log(check);
+            console.log("dsdsdsdsd"+ check);
         function nextQuery(check)
         {
             if(check)
@@ -90,6 +88,12 @@ router.post('/markAttendance', (req, res,next) => {
 
         }
        
+
+        })
+        
+        })
+
+
 
 
 })

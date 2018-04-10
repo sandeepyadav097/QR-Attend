@@ -6,6 +6,7 @@ const teacher=require('./api/routes/teacher')
 const student=require('./api/routes/student')
 const auth=require('./api/routes/auth')
 const detailsSelect=require('./api/routes/detailsSelect')
+const query=require('./api/routes/query')
 const morgan = require('morgan')
 const app = express();
 const bodyParser=require('body-parser');
@@ -127,12 +128,12 @@ app.get('/hello', function(req,res){
   res.render("admin");
 });
 
-app.get('/',(req,res)=>{    
+app.get('/',authenticationMiddleware (),(req,res)=>{    
     // db.query('SELECT 1 + 1 from dual', function (error, results, fields) {
     //   if (error) throw error;
     //   console.log('The solution is: ', results);
     // })   
-    res.render('login');
+    res.render('studentDashboard',{username:req.user});//redirect to dashboard
 })
 
 app.get('/studentlogin', (req, res)=>{
@@ -151,11 +152,23 @@ app.get('/views/admin', (req, res)=>{
   
   });
 
+
+  function authenticationMiddleware () {  
+    return (req, res, next) => {
+      console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+  
+        if (req.isAuthenticated()) return next();
+        res.redirect('/studentLogin')
+    }
+  }
+  
+
 app.use('/api/routes/admin',admin);
 app.use('/api/routes/teacher',teacher);
 app.use('/api/routes/student',student);
 app.use('/api/routes/auth',auth);
 app.use('/api/routes/detailsSelect',detailsSelect);
+app.use('/api/routes/query',query);
 
 app.listen(3080, () => console.log('Server started at http://localhost:3000'))
 ///
