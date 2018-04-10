@@ -67,52 +67,52 @@ router.post('/teacherDetails', (req, res,next) => {
     })
 })
 
-router.post('/subjectCodes', (req, res,next) => {
+// router.post('/subjectCodes', (req, res,next) => {
    
-    var code = req.body.code;
-    var name= req.body.name;
-     var sql = `insert into subject_codes values(?,?);`;
+//     var code = req.body.code;
+//     var name= req.body.name;
+//      var sql = `insert into subject_codes values(?,?);`;
     
-    db.query(sql,[code,name], function (error, results, fields) {
-      if (error) throw error;
-      console.log('The solution is: ', results);
-      res.send({success:true})
-    })
-})
-router.post('/subjectTeacherClass', (req, res,next) => {
+//     db.query(sql,[code,name], function (error, results, fields) {
+//       if (error) throw error;
+//       console.log('The solution is: ', results);
+//       res.send({success:true})
+//     })
+// })
+// router.post('/subjectTeacherClass', (req, res,next) => {
    
-    var id = parseInt(req.body.id);
-    var code= req.body.code;
-    var Class=req.body.class;
+//     var id = parseInt(req.body.id);
+//     var code= req.body.code;
+//     var Class=req.body.class;
 
-    console.log(req.body.class);
+//     console.log(req.body.class);
 
-     var sql = `insert into subject_teacher_class values(?,?,?);`;
+//      var sql = `insert into subject_teacher_class values(?,?,?);`;
     
-    db.query(sql,[id,code,Class], function (error, results, fields) {
-      if (error) throw error;
-      console.log('The solution is: ', results);
-      res.send({success:true})
-    })
-})
-router.post('/teacherTimeTable', (req, res,next) => {
+//     db.query(sql,[id,code,Class], function (error, results, fields) {
+//       if (error) throw error;
+//       console.log('The solution is: ', results);
+//       res.send({success:true})
+//     })
+// })
+// router.post('/teacherTimeTable', (req, res,next) => {
    
-    var id = parseInt(req.body.id);
-    var day= req.body.day;
-    var Class1 = req.body.class1;
-    var Class2 = req.body.class2;
-    var Class3 = req.body.class3;
-    var Class4 = req.body.class4;
-    var Class5 = req.body.class5;
-    var Class6 = req.body.class6;
-     var sql = `insert into teacher_time_table values (?,?,?,?,?,?,?,?)`;
+//     var id = parseInt(req.body.id);
+//     var day= req.body.day;
+//     var Class1 = req.body.class1;
+//     var Class2 = req.body.class2;
+//     var Class3 = req.body.class3;
+//     var Class4 = req.body.class4;
+//     var Class5 = req.body.class5;
+//     var Class6 = req.body.class6;
+//      var sql = `insert into teacher_time_table values (?,?,?,?,?,?,?,?)`;
     
-    db.query(sql,[id,day,Class1,Class2,Class3,Class4,Class5,Class6], function (error, results, fields) {
-      if (error) throw error;
-      console.log('The solution is: ', results);
-      res.send({success:true})
-    })
-})
+//     db.query(sql,[id,day,Class1,Class2,Class3,Class4,Class5,Class6], function (error, results, fields) {
+//       if (error) throw error;
+//       console.log('The solution is: ', results);
+//       res.send({success:true})
+//     })
+// })
 router.post('/studentAuth', (req, res,next) => {
    
     var username=req.body.username;
