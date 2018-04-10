@@ -16,20 +16,119 @@
 </head>
 <body>
      
-      <div class="navbar-fixed">
+    <div class="navbar-fixed">
         <nav>
-          <div class="nav-wrapper">
+          <div class="nav-wrapper" style="margin-left:auto; margin-right:auto; width:90%">
              
-           <span><%=username %></span>
+           <span>You are logged in as <strong><%=username %></strong></span>
             <ul class="right hide-on-med-and-down">
-              <li><a href="sass.html">Sass</a></li>
-              <li><a href="badges.html">Components</a></li>
+              <li>
+                <a>
+                <!-- <form method='get' action='/api/routes/auth/logout'>
+                  <input value='Logout' type='submit'>
+                </form> -->
+                <a href="/api/routes/auth/logout">Logout</a>
+                </a>
+
+              </li>
+          
             </ul>
           </div>
         </nav>
       </div>
             
-     
+    
+      
+  
+      <div class="row">
+          <div class="col s12 m8 offset-m2 l8 offset-l2">
+          <div class="card">
+          <div class="card-content text-responsive center-align orange lighten-2">
+              <p>Select the action you want to perform</p>
+          </div>
+          <div class="card-tabs">
+            <ul class="tabs tabs-fixed-width">
+              <li class="tab"><a class="active"  href="#test4">Mark Presence</a></li>
+              <li class="tab"><a href="#test5">Show Stats</a></li>
+            
+            </ul>
+          </div>
+          <div class="card-content grey lighten-2 center-align">
+            <div id="test4">Mark Presence<br>
+           Mark your presence by scanning the unique QR code.
+             <br>
+            
+
+
+<video id="preview" width="50%" height="50%" style="margin:auto"></video>
+<strong><p id='code'>hello </p></strong>
+        
+        
+
+
+
+<form    action="/api/routes/teacher/markAttendance" method="post">
+  <div class="row">
+
+    <div class="input-field col s4">
+      <input id="date" type="text" name='Date'>
+      <label for="date">Date</label>
+    </div>
+ 
+    <div class="input-field col s4">
+      <input id="password" type="text" name='otp'>
+      <label for="password">OTP</label>
+    </div>
+ 
+        <div class="input-field col s4">
+          <input id="class_" type="text" name='subject'>
+          <label for="class_">Subject</label>
+        </div>
+      </div>
+  
+      <div class="row">
+            <div class="input-field col s12">
+                    <input class="btn waves-effect hoverable" type='submit' value='Take Attendance'>
+            </div>
+          </div>
+
+</form>
+
+    
+
+
+
+
+
+
+
+
+
+
+          
+          
+          </div>
+            <div id="test5">Show Stats<br>
+      <p>ksancsncksc</p>
+      
+          </div>
+          
+          </div>
+             </div>
+          </div>
+        </div>
+      
+
+
+
+
+
+
+
+
+
+
+
 <video id="preview" width="50%" height="50%" style="margin:auto"></video>
 <p id='code'>hello </p>
 <script type="text/javascript">

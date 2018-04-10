@@ -147,6 +147,11 @@ app.get('/adminlogin', (req, res)=>{
   res.render('adminLogin');
 });
 
+app.get('/index', (req,res)=>{
+res.render('index');
+
+});
+
 app.get('/views/admin', (req, res)=>{
   res.render('admin');
   
@@ -170,5 +175,5 @@ app.use('/api/routes/auth',auth);
 app.use('/api/routes/detailsSelect',detailsSelect);
 app.use('/api/routes/query',query);
 
-app.listen(3080, () => console.log('Server started at http://localhost:3000'))
+app.listen(3070, () => console.log('Server started at http://localhost:3070'))
 ///

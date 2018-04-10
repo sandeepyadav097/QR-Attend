@@ -11,15 +11,15 @@ router.use(bodyParser.urlencoded({
 const db = require('./../../db')
 
 
-router.post('/studentAuth',  passport.authenticate('local.one', { failureRedirect: '/login' }), (req, res,next) => {
+router.post('/studentAuth',  passport.authenticate('local.one', { failureRedirect: '/studentLogin' }), (req, res,next) => {
   res.render('../views/studentDashboard', {username:req.user});
 
 })
-router.post('/adminAuth',  passport.authenticate('local.two', { failureRedirect: '/login' }), (req, res,next) => {
+router.post('/adminAuth',  passport.authenticate('local.two', { failureRedirect: '/adminLogin' }), (req, res,next) => {
   res.render('../views/adminDashboard', {username:req.user});
 
 })
-router.post('/teacherAuth',  passport.authenticate('local.three', { failureRedirect: '/login' }), (req, res,next) => {
+router.post('/teacherAuth',  passport.authenticate('local.three', { failureRedirect: '/teacherLogin' }), (req, res,next) => {
   res.render('../views/teacherDashboard', {username:req.user});
 
 })
@@ -29,7 +29,7 @@ router.get('/logout',(req,res)=> {
   req.logout();
   req.session.destroy();
   //res.render('../views/teacherLogin');
-  res.redirect('/teacherLogin');
+  res.redirect('/index');
 })
 
 passport.serializeUser(function(user_id, done) {
