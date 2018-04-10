@@ -66,6 +66,7 @@ router.post('/teacherDetails', (req, res,next) => {
       res.send({success:true})
     })
 })
+
 router.post('/subjectCodes', (req, res,next) => {
    
     var code = req.body.code;

@@ -18,11 +18,11 @@ router.post('/studentAuth',  passport.authenticate('local.one', { failureRedirec
 
 })
 router.post('/adminAuth',  passport.authenticate('local.two', { failureRedirect: '/login' }), (req, res,next) => {
-  res.render('../views/studentDashboard', {username:req.user});
+  res.render('../views/adminDashboard', {username:req.user});
 
 })
 router.post('/teacherAuth',  passport.authenticate('local.three', { failureRedirect: '/login' }), (req, res,next) => {
-  res.render('../views/studentDashboard', {username:req.user});
+  res.render('../views/teacherDashboard', {username:req.user});
 
 })
 
@@ -30,8 +30,8 @@ router.post('/teacherAuth',  passport.authenticate('local.three', { failureRedir
 router.get('/logout',(req,res)=> {
   req.logout();
   req.session.destroy();
-  res.render('../views/index s');
-
+  //res.render('../views/teacherLogin');
+  res.redirect('/teacherLogin');
 })
 
 passport.serializeUser(function(user_id, done) {

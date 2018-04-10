@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%=username %> Dashboard</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+    
+    <script type="text/javascript" src="/instascan.min.js"></script>
+    <script type="text/javascript" src="/qrcode.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+          
+</head>
+<body>
+     
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+             
+           <span><%=username %></span>
+            <ul class="right hide-on-med-and-down">
+              <li>
+                <a>
+                <!-- <form method='get' action='/api/routes/auth/logout'>
+                  <input value='Logout' type='submit'>
+                </form> -->
+                <a href="/api/routes/auth/logout">Logout</a>
+                </a>
+
+              </li>
+          
+            </ul>
+          </div>
+        </nav>
+      </div>
+            
+ 
+      <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a href="#test1">Test 1</a></li>
+              <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+              <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+              <li class="tab col s3"><a href="#test4">Test 4</a></li>
+            </ul>
+          </div>
+          <div id="test1" class="col s12">
+            <form method='post' action=''>
+              <input type='text'>
+              <input type='text'>
+              <input type='submit'>
+            </form>
+
+
+          </div>
+          <div id="test2" class="col s12">Test 2</div>
+          <div id="test3" class="col s12">Test 3</div>
+          <div id="test4" class="col s12">Test 4</div>
+        </div>    
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+<script>
+   $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+        
+
+</script>
+
+<script type="text/javascript" src="/dashboard.js"></script>
+</html>
