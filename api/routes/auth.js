@@ -12,15 +12,63 @@ const db = require('./../../db')
 
 
 router.post('/studentAuth',  passport.authenticate('local.one', { failureRedirect: '/studentLogin' }), (req, res,next) => {
-  res.render('../views/studentDashboard', {username:req.user});
+
+  var sql = 'select * from student_details where student_id=?;';
+    
+  db.query(sql,[req.user], function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results);
+    if(results[0]==null)
+    {
+        res.send(null);
+    }
+    else{
+      res.render('../views/studentDashboard', {username:results[0].student_name});
+        
+    }
+ 
+  })
+
+ 
 
 })
 router.post('/adminAuth',  passport.authenticate('local.two', { failureRedirect: '/adminLogin' }), (req, res,next) => {
-  res.render('../views/adminDashboard', {username:req.user});
+
+  var sql = 'select * from admin_details where admin_id=?;';
+    
+  db.query(sql,[req.user], function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results);
+    if(results[0]==null)
+    {
+        res.send(null);
+    }
+    else{
+      res.render('../views/adminDashboard', {username:results[0].admin_name});
+        
+    }
+ 
+  })
+
+ 
 
 })
 router.post('/teacherAuth',  passport.authenticate('local.three', { failureRedirect: '/teacherLogin' }), (req, res,next) => {
-  res.render('../views/teacherDashboard', {username:req.user});
+  var sql = 'select * from teacher_details where teacher_id=?;';
+    
+  db.query(sql,[req.user], function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results);
+    if(results[0]==null)
+    {
+        res.send(null);
+    }
+    else{
+      res.render('../views/teacherDashboard', {username:results[0].teacher_name});
+        
+    }
+ 
+  })
 
 })
 
