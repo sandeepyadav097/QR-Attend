@@ -175,5 +175,5 @@ app.use('/api/routes/auth',auth);
 app.use('/api/routes/detailsSelect',detailsSelect);
 app.use('/api/routes/query',query);
 
-app.listen(3070, () => console.log('Server started at http://localhost:3070'))
+app.listen(3830, () => console.log('Server started at http://localhost:3070'))
 ///

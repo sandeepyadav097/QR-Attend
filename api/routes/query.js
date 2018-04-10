@@ -148,9 +148,37 @@ var sql1 = 'select distinct attendance_date  from  attendance'+Class+' where '+s
                            finalAns.suba3=finalAns.sub1-finalAns.subp3;
                            finalAns.suba4=finalAns.sub1-finalAns.subp4;
                            finalAns.suba5=finalAns.sub1-finalAns.subp5;
+                          
+            finalAns.subper1=(finalAns.subp1/finalAns.sub1)*100;               
+            finalAns.subper2=(finalAns.subp2/finalAns.sub2)*100;               
+            finalAns.subper3=(finalAns.subp3/finalAns.sub3)*100;               
+            finalAns.subper4=(finalAns.subp4/finalAns.sub4)*100;               
+            finalAns.subper5=(finalAns.subp5/finalAns.sub5)*100;               
+            
 
-            res.send(finalAns);
-                           
+            
+  var sql = 'select * from student_details where student_id=?;';
+    
+  db.query(sql,[req.user], function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results);
+    if(results[0]==null)
+    {
+        res.send(null);
+    }
+    else{
+      finalAns.username=results[0].student_name;
+      res.render('../views/studentDashboard', {s1:'12345',username:finalAns.username});
+      //  res.send(finalAns);
+    }
+ 
+  })
+                           /* {username:finalAns.username, s1:subject1, s2:subject2, s3:subject3, s4:subject4, s5:subject5, t1:finalAns.sub1, t2:finalAns.sub2, t3:finalAns.sub3,
+         t4:finalAns.sub4,t5:finalAns.sub5, p1:finalAns.subp1, p2:finalAns.subp2, p3:finalAns.subp3 , p4:finalAns.subp4 ,p5:finalAns.subp5, a1:finalAns.a1,
+         a2:finalAns.a2 , a3:finalAns.a3, a4:finalAns.a4, a5:finalAns.a5, per1:finalAns.subper1, per2:finalAns.subper2,per3:finalAns.subper3,per4:finalAns.subper4,per5:finalAns.subper5  
+             
+        
+        }*/
             
                        })
                     
