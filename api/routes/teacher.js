@@ -3,6 +3,8 @@ const router = express.Router()
 const db = require('./../../db')
 var classTaken="";
 var subjectTaken="";
+var dateTaken="";
+
 
 router.post('/takeAttendance', (req, res,next) => {
    
@@ -10,6 +12,9 @@ router.post('/takeAttendance', (req, res,next) => {
     var date= req.body.date;
     var otp=req.body.otp;
     var Class=req.body.class;
+
+    dateTaken=date;
+
     subjectTaken=req.body.subject;
 
     classTaken=Class;
@@ -22,25 +27,30 @@ router.post('/takeAttendance', (req, res,next) => {
       if (error) throw error;
       console.log('The solution is: ', results);
       res.send({success:true})
+      tesq();
     })
 })
-
+function tesq(){
+    console.log(classTaken+" "+subjectTaken);
+}
 router.post('/stopAttendance', (req, res,next) => {
    
-    var id = parseInt(req.user);
-    var date= req.body.date;
+    console.log(classTaken+" "+subjectTaken);
+    var id =parseInt(req.user);
+  
  
     var complete=1;
 
      var sql = `update otp set complete=? where teacher_id=? and attendance_date=?`;
     
-    db.query(sql,[complete,id,date], function (error, results, fields) {
+    db.query(sql,[complete,id,dateTaken], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
       res.send({success:true})
 
-      var sql2 = 'update attendance'+classTaken+' set '+subject+'= ? where ' +subjectTaken+'= ? attendance_date=?;'
-      db.query(sql2,['A','N',date], function (error, results, fields) {
+      var sql2 = 'update attendance'+classTaken+' set '+subjectTaken+'= ? where ' +subjectTaken+'= ? and attendance_date=?;'
+      db.query(sql2,['A','N',dateTaken], function (error, results, fields) {
+          console.log(sql2);
                   if (error) throw error;
       console.log('The solution is: ', results);
   

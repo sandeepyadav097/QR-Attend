@@ -11,8 +11,6 @@ router.use(bodyParser.urlencoded({
 const db = require('./../../db')
 
 
-
-
 router.post('/studentAuth',  passport.authenticate('local.one', { failureRedirect: '/login' }), (req, res,next) => {
   res.render('../views/studentDashboard', {username:req.user});
 
@@ -50,7 +48,7 @@ function authenticationMiddleware () {
 		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
 	    if (req.isAuthenticated()) return next();
-	    res.redirect('/login')
+	    res.redirect('/studentLogin')
 	}
 }
 
