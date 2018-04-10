@@ -12,8 +12,8 @@ router.post('/totalClasses', (req, res,next) => {
     var finalAns={};
 
    
-    var sid = 1;
-    
+    var sid = parseInt(req.user);
+
    // var date= req.body.date;
    // var otp=req.body.otp;
    var sql11='select class from student_details where student_id=?'
