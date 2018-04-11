@@ -52,11 +52,14 @@ router.post('/markAttendance', (req, res,next) => {
             if(check)
             {
                 nextQuery(check);
-                res.send({success:true})
+               // res.send({success:true})
+               res.render('../views/status',{success:"Attendance marked succesfully"})
             }
             
             else
-            res.send({success:false})
+        {
+            res.render('../views/status',{success:"Attendance cannot be marked succesfully"})
+        }
             
             })
             console.log("dsdsdsdsd"+ check);

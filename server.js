@@ -128,12 +128,46 @@ app.get('/hello', function(req,res){
   res.render("admin");
 });
 
-app.get('/',authenticationMiddleware (),(req,res)=>{    
-    // db.query('SELECT 1 + 1 from dual', function (error, results, fields) {
-    //   if (error) throw error;
-    //   console.log('The solution is: ', results);
-    // })   
-    res.render('studentDashboard',{username:req.user});//redirect to dashboard
+app.get('/studentProfile',authenticationMiddleware1 (),(req,res)=>{    
+  var sql = 'select * from student_details where student_id=?;';
+    
+  db.query(sql,[req.user], function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results);
+    if(results[0]==null)
+    {
+        res.send(null);
+    }
+    else{
+      res.render('../views/studentDashboard',{username:results[0].student_name, s1:'' , s2:'', s3:'', s4:'', s5:'',
+    t1:'', t2:'', t3:'', t4:'', t5:'', p1:'', p2:'', p3:'', p4:'', p5:'', a1:'', a2:'', a3:'', a4:'', a5:'',
+        
+    per1:'', per2:'', per3:'', per4:'', per5:''
+    
+    }) 
+    
+        
+    }
+ 
+  })
+})
+
+app.get('/teacherProfile',authenticationMiddleware2 (),(req,res)=>{    
+  var sql = 'select * from teacher_details where teacher_id=?;';
+    
+  db.query(sql,[req.user], function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results);
+    if(results[0]==null)
+    {
+        res.send(null);
+    }
+    else{
+      res.render('../views/teacherDashboard', {username:results[0].teacher_name});
+        
+    }
+ 
+  })
 })
 
 app.get('/studentlogin', (req, res)=>{
@@ -158,12 +192,21 @@ app.get('/views/admin', (req, res)=>{
   });
 
 
-  function authenticationMiddleware () {  
+  function authenticationMiddleware1 () {  
     return (req, res, next) => {
       console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
   
         if (req.isAuthenticated()) return next();
         res.redirect('/studentLogin')
+    }
+  }
+  
+  function authenticationMiddleware2 () {  
+    return (req, res, next) => {
+      console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+  
+        if (req.isAuthenticated()) return next();
+        res.redirect('/teacherLogin')
     }
   }
   

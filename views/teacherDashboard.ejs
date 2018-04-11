@@ -51,7 +51,6 @@
     <div class="card-tabs">
       <ul class="tabs tabs-fixed-width">
         <li class="tab"><a href="#test4">Take Attendance</a></li>
-        <li class="tab"><a class="active" href="#test5">Show Stats</a></li>
       
       </ul>
     </div>
@@ -59,7 +58,7 @@
       <div id="test4">Take Attendance<br>
         Type in some text to generate a unique QR code.
        <br>
-        <input id="text" type="text" value="hello"  style='width:50%'/><br />
+        <!-- <input id="text" type="text" value="hello"  style='width:50%'/><br /> -->
         <div id="qrcode" class="center-align" style="margin-left:auto; margin-right:auto ;width:25%; min-height:25%" ></div>
       <br>
 
@@ -71,22 +70,22 @@
               <div class="row">
             
                 <div class="input-field col s3">
-                  <input id="date" type="text" name='date'>
+                  <input id="date" type="text" name='date' required>
                   <label for="date">Date</label>
                 </div>
              
                 <div class="input-field col s3">
-                  <input id="password" type="text" name='otp'>
-                  <label for="password">OTP</label>
+                  <input id="text" type="text" value="hello"  style='width:50%' name='otp' required>
+                  <label for="text">OTP</label>
                 </div>
              
                     <div class="input-field col s3">
-                      <input id="class_" type="text" name='class'>
+                      <input id="class_" type="text" name='class' required>
                       <label for="class_">Class</label>
                     </div>
 
                     <div class="input-field col s3">
-                      <input id="subject" type="text" name='subject'>
+                      <input id="subject" type="text" name='subject' required>
                       <label for="subject">Subject</label>
                     </div>
 
@@ -127,7 +126,7 @@
 <br>
 
       <form action="/api/routes/teacher/stopAttendance" method="post">
-        <input class="btn waves-effect hoverable " type='submit' value='Stop Attendance'>
+        <input class="btn waves-effect hoverable red" type='submit' value='Stop Attendance'>
       </form>
 
 
@@ -135,10 +134,6 @@
 
 
 
-      <div id="test5">Show Stats<br>
-<p>ksancsncksc</p>
-
-    </div>
     
     </div>
        </div>

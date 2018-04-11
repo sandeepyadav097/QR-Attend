@@ -26,7 +26,7 @@ router.post('/takeAttendance', (req, res,next) => {
     db.query(sql,[id,date,complete,otp,Class], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
-      res.send({success:true})
+     res.send({success:true})
       tesq();
     })
 })
@@ -46,13 +46,16 @@ router.post('/stopAttendance', (req, res,next) => {
     db.query(sql,[complete,id,dateTaken], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
-      res.send({success:true})
+    //  res.send({success:true})
 
       var sql2 = 'update attendance'+classTaken+' set '+subjectTaken+'= ? where ' +subjectTaken+'= ? and attendance_date=?;'
       db.query(sql2,['A','N',dateTaken], function (error, results, fields) {
           console.log(sql2);
                   if (error) throw error;
       console.log('The solution is: ', results);
+
+      res.render('../views/statusTeacher',{success:"Attendance taken succesfully"})
+
   
   })
     })
