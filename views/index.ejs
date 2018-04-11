@@ -1,120 +1,116 @@
-<!DOCTYPE HTML>
-<html >
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Cross-Browser QRCode generator for Javascript</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
-
-<script type="text/javascript" src="/instascan.min.js"></script>
-<script type="text/javascript" src="/qrcode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sandeep Yadav</title>
 </head>
-<body>
 
 
+<body id="body" style=" background: url('/images/image.jpg') center center no-repeat; background-size: cover; background-attachment:fixed;">
+      
+ <div id="particles-js"></div>
+    </body>
+ 
+    
+    
 
-		<ul class="collapsible" data-collapsible="accordion">
-				<li>
-					<div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-					<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-				</li>
-				<li>
-					<div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-					<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-				</li>
-				<li>
-					<div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-					<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-				</li>
-			</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <input id="text" type="text" value="hello" style="width:80%" /><br />
-<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div> -->
-
-<!-- <script type="text/javascript">
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-	width : 300,
-	height : 300
-});
-
-function makeCode () {		
-	var elText = document.getElementById("text");
-	
-	if (!elText.value) {
-		alert("Input a text");
-		elText.focus();
-		return;
-	}
-	
-	qrcode.makeCode(elText.value);
-}
-
-makeCode();
-
-$("#text").
-	on("blur", function () {
-		makeCode();
-	}).
-	on("keydown", function (e) {
-		if (e.keyCode == 13) {
-			makeCode();
-		}
-	});
-</script>
+    
+ 
 
 <br>
 
-<video id="preview" style="margin-top:200px"></video>
-<p id='code'>hello </p>
-<script type="text/javascript">
+
+<div class="text-center" >
+    <h4 class="cyan-text"> Kindly Choose the option accordingly</h4>
+    </div>
+<div style="margin-top:10%" class="container-fluid">
+   <div  class="row">
+      <div class="col s12 m6 offset-m3 l6 offset-l3">
+          
+      <ul class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header teal">Admin</div>
+      <div class="collapsible-body teal-text">
+		  <p>Click here for Admin Login</p>
+		  <br>
+		<a  class='btn hoverable' href='/adminLogin'>
+				Admin Login
+		</a>
+
+	  </div>
+	
+	</li>
+    <li>
+	
+			<div class="collapsible-header orange">Teacher</div>
+			<div class="collapsible-body teal-text">
+				<p>Click here for Teacher Login</p>
+				<br>
+			  <a  class='btn hoverable' href='/teacherLogin'>
+					  Teacher Login
+			  </a>
+	  
+			</div>
+	
+	</li>
+    <li>
+	
+			<div class="collapsible-header teal">Student</div>
+			<div class="collapsible-body teal-text">
+				<p>Click here for Student Login</p>
+				<br>
+			  <a  class='btn hoverable' href='/studentLogin'>
+					  Student Login
+			  </a>
+	  
+			</div>
+	
+	
+	</li>
+  </ul>
+            <!-- <div class="card teal lighten-4">
+              
+              <div class="card-content">
+              <span class="card-title ">ABOUT ME</span>
+              <span>
+
+<ul>
+    <li>I'm an Information Techonology Engineering Student at Delhi technological University, which  is one of the premier institutes in the country.</li><li>I will Complete my bachlors in 2020, till then i'm available as a Part time freelancer web developer.</li>
+Over the past 3 months i have gathered proficient skills in web developmant.
+    Name: Jaydev Shiroya Age: 20 Years Citizenship: India Job: Freelancer Residence: Ahmedabad Brain: Creative</ul>
+           
+           </span>
+            </div>
+  
+              
+              
+          </div>
+          -->
+          
+      </div>
+       
+   </div>
+    
+</div>
 
 
-  let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-  scanner.addListener('scan', function (content) {
-	console.log(content);
-	document.getElementById('code').innerHTML=content;
-  });
-  Instascan.Camera.getCameras().then(function (cameras) {
-	if (cameras.length==1) {
-	  scanner.start(cameras[0]);
-	} 
-	else if( cameras.length==2)
-	{
-		scanner.start(cameras[1]);
-	}else {
-	  console.error('No cameras found.');
-	}
-  }).catch(function (e) {
-	console.error(e);
-  });
-</script>
 
 
- -->
+<br>
 
 
-</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+   
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">      
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">    
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
+</html>
+

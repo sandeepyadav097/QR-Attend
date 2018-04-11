@@ -23,7 +23,12 @@ router.post('/studentAuth',  passport.authenticate('local.one', { failureRedirec
         res.send(null);
     }
     else{
-      res.render('../views/studentDashboard',{username:results[0].student_name, s1:'' }) 
+      res.render('../views/studentDashboard',{username:results[0].student_name, s1:'' , s2:'', s3:'', s4:'', s5:'',
+    t1:'', t2:'', t3:'', t4:'', t5:'', p1:'', p2:'', p3:'', p4:'', p5:'', a1:'', a2:'', a3:'', a4:'', a5:'',
+        
+    per1:'', per2:'', per3:'', per4:'', per5:''
+    
+    }) 
     
         
     }
