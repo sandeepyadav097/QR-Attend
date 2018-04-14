@@ -2,8 +2,8 @@
   "scripts": {
     "start": "nodemon server.js"
   },
-  "name": "",
-  "version": "",
+  "name": "qrattend",
+  "version": "1.0.0",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",

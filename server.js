@@ -19,6 +19,7 @@ const MySQLStore = require('express-mysql-session')(session);
 
 
 
+
 app.use(bodyParser.urlencoded({ extended: true}));
 
 app.use(express.static(__dirname+'/public'));
@@ -48,6 +49,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 var  myLocalStrategy1=new LocalStrategy(
   function(username, password, done) {

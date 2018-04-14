@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sandeep Yadav</title>
+    <link rel="manifest" href="/manifest.json">
 </head>
 
 
@@ -111,6 +112,13 @@ Over the past 3 months i have gathered proficient skills in web developmant.
    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">    
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-
+<script> 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('../sw.js')
+    .then(function() {
+      console.log('SW registered');
+    });
+}
+</script>
 </html>
 
