@@ -8,6 +8,7 @@
     
     <script type="text/javascript" src="/instascan.min.js"></script>
     <script type="text/javascript" src="/qrcode.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
   
@@ -16,33 +17,86 @@
 </head>
 <body>
      
+
+
+  <nav>
+    <div class="nav-wrapper">
+        <span href="#!" style="margin-left: 10px" >You are logged in as <strong><%=username %></strong></span>
+
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+     
+          <li>
+              <a>
+             
+              <a href="/api/routes/auth/logout">Logout</a>
+              </a>
+
+            </li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+          <li>
+              <a>
+             
+              <a href="/api/routes/auth/logout">Logout</a>
+              </a>
+
+            </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
     <div class="navbar-fixed">
         <nav>
           <div class="nav-wrapper" style="margin-left:auto; margin-right:auto; width:90%">
              
            <span>You are logged in as <strong><%=username %></strong></span>
+           
+           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+           
+
             <ul class="right hide-on-med-and-down">
               <li>
                 <a>
-                <!-- <form method='get' action='/api/routes/auth/logout'>
-                  <input value='Logout' type='submit'>
-                </form> -->
+               
                 <a href="/api/routes/auth/logout">Logout</a>
                 </a>
 
               </li>
           
             </ul>
-          </div>
-        </nav>
-      </div>
-            
+
+            <!-- <ul class="side-nav" id="mobile-demo">
+              <li>
+                <a>
+                <a href="/api/routes/auth/logout">Logout</a>
+                </a>
+
+              </li>
+          
+            </ul> -->
+
+
+
+         
     
       
   
       <div class="row">
           <div class="col s12 m8 offset-m2 l8 offset-l2">
-          <div class="card">
+          <div class="card hoverable">
           <div class="card-content text-responsive center-align orange lighten-2">
               <p>Select the action you want to perform</p>
           </div>
@@ -60,7 +114,7 @@
             
 
 
-<video id="preview" width="50%" height="50%" style="margin:auto"></video>
+<video id="preview"  style="margin:auto; width:100%; min-height:100%"></video>
 
 
 
@@ -118,13 +172,13 @@
   
 
 
-      <table class='striped centered responsive-table'>
+      <table class='striped '>
         <thead>
           <tr>
               <th>Subject</th>
               <th>Present</th>
               <th>Absent</th>
-              <th>Total</th>
+              <th style="display:none">Total</th>
               <th>Percent</th>
           </tr>
         </thead>
@@ -135,7 +189,7 @@
             <td><%=s1 %></td>
             <td><%=p1 %></td>
             <td><%=a1 %></td>
-            <td><%=t1 %></td>
+            <td style="display:none"><%=t1 %></td>
             <td><%=per1 %></td>
           </tr>
        
@@ -146,7 +200,7 @@
             <td><%=s2 %></td>
             <td><%=p2 %></td>
             <td><%=a2 %></td>
-            <td><%=t2 %></td>
+            <td style="display:none"><%=t2 %></td>
             <td><%=per2 %></td>
           </tr>
        
@@ -157,7 +211,7 @@
             <td><%=s3 %></td>
             <td><%=p3 %></td>
             <td><%=a3 %></td>
-            <td><%=t3 %></td>
+            <td style="display:none"><%=t3 %></td>
             <td><%=per3 %></td>
           </tr>
        
@@ -168,7 +222,7 @@
             <td><%=s4 %></td>
             <td><%=p4 %></td>
             <td><%=a4 %></td>
-            <td><%=t4 %></td>
+            <td style="display:none"><%=t4 %></td>
             <td><%=per4 %></td>
           </tr>
        
@@ -179,7 +233,7 @@
             <td><%=s5 %></td>
             <td><%=p5 %></td>
             <td><%=a5 %></td>
-            <td><%=t5 %></td>
+            <td style="display:none"><%=t5 %></td>
             <td><%=per5 %></td>
           </tr>
        
@@ -212,13 +266,13 @@
 
 
 
+<!-- 
 
 
 
 
 
-
-<video id="preview" width="50%" height="50%" style="margin:auto"></video>
+<video id="preview" width="300%" height="100%" style="margin:auto"></video> -->
 
 <script type="text/javascript">
 
@@ -230,22 +284,25 @@
   document.getElementById('password').value=content;
   });
   Instascan.Camera.getCameras().then(function (cameras) {
+
 	if (cameras.length==1) {
 	  scanner.start(cameras[0]);
 	} 
 	else if( cameras.length==2)
 	{
+    
 		scanner.start(cameras[1]);
 	}else {
 	  console.error('No cameras found.');
 	}
-  }).catch(function (e) {
+  }  
+).catch(function (e) {
 	console.error(e);
   });
 </script>
 
 </body>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+  <script> $(".button-collapse").sideNav();</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
 <script type="text/javascript" src="/dashboard.js"></script>
 </html>
