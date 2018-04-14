@@ -26,7 +26,25 @@ router.post('/takeAttendance', (req, res,next) => {
     db.query(sql,[id,date,complete,otp,Class], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
-     res.send({success:true})
+
+      var sql1 = 'select * from teacher_details where teacher_id=?;';
+    
+      db.query(sql1,[req.user], function (error, results, fields) {
+        if (error) throw error;
+        console.log('The solution is: ', results);
+        if(results[0]==null)
+        {
+            res.send(null);
+        }
+        else{
+        
+          res.render('../views/qrTeacher', {username:results[0].teacher_name, otp:otp});
+            
+        }
+     
+      })
+  
+
       tesq();
     })
 })
