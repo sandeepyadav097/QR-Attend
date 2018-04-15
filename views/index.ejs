@@ -7,32 +7,34 @@
     <link rel="manifest" href="/manifest.json">
 </head>
 
-
-<body id="body" style=" background: url('/images/image.jpg') center center no-repeat; background-size: cover; background-attachment:fixed;">
+   
+<body id="body">
       
- <div id="particles-js"></div>
-    </body>
- 
+  <div id="particles-js"></div>
+</body>
     
-    
+    <nav>
+      <div class="nav-wrapper text-center">
+          <span  style="margin-left: 10px ; font-size: 25px" >QRAttend</strong></span>
+  
+      
+      
+      </div>
+    </nav>    
 
-    
- 
 
-<br>
-
-
+<div id="data" >
 <div class="text-center" >
-    <h4 class="cyan-text"> Kindly Choose the option accordingly</h4>
+    <h4 class="cyan-text"> Kindly Choose an option.</h4>
     </div>
-<div style="margin-top:10%" class="container-fluid">
+<div  class="container-fluid">
    <div  class="row">
       <div class="col s12 m6 offset-m3 l6 offset-l3">
           
       <ul class="collapsible popout" data-collapsible="accordion">
     <li>
       <div class="collapsible-header teal">Admin</div>
-      <div class="collapsible-body teal-text">
+      <div class="collapsible-body white-text">
 		  <p>Click here for Admin Login</p>
 		  <br>
 		<a  class='btn hoverable' href='/adminLogin'>
@@ -45,7 +47,7 @@
     <li>
 	
 			<div class="collapsible-header orange">Teacher</div>
-			<div class="collapsible-body teal-text">
+			<div class="collapsible-body white-text">
 				<p>Click here for Teacher Login</p>
 				<br>
 			  <a  class='btn hoverable' href='/teacherLogin'>
@@ -58,7 +60,7 @@
     <li>
 	
 			<div class="collapsible-header teal">Student</div>
-			<div class="collapsible-body teal-text">
+			<div class="collapsible-body white-text">
 				<p>Click here for Student Login</p>
 				<br>
 			  <a  class='btn hoverable' href='/studentLogin'>
@@ -76,17 +78,41 @@
    </div>
     
 </div>
+</div>
 
 
+<footer class="page-footer " style="position: fixed;left: 0;bottom: 0;width: 100%;">
 
+  <div class="footer-copyright">
+    <div class="container">
+    © 2018 QRAttend
+    <p class="grey-text text-lighten-4 right">Designed and Developed By <strong>Sandeep Yadav</strong> and <strong>Satyajeet Singh</strong></p>
+   
+  </div>
+  </div>
+</footer>
+    
 
 <br>
+<style>
 
+  #particles-js {
+     
+  background-image:linear-gradient(to right, #434343 0%,#000000 100%);; /* #01013e */
+    /* background: url("http://www.vlime.co.nz/images/buttons/backgroundimage.jpg");
+    background-attachment: fixed;
+    background-size: cover; */
+    z-index: -50;
+    position: fixed;
+  height: 100%;
+    width: 100%;
+}
+</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
    
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+  <script type="text/javascript" src="../javascript/particles.js"></script>
      <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">      
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>   
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>    
@@ -102,5 +128,133 @@ if ('serviceWorker' in navigator) {
     });
 }
 </script>
+
+
+<script>
+  
+
+particlesJS('particles-js',
+  
+  {
+    "particles": {
+      "number": {
+        "value": 100,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": "#ffffff"
+      },
+      "shape": {
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#000000"
+        },
+        "polygon": {
+          "nb_sides": 5
+        },
+        "image": {
+          "src": "img/github.svg",
+          "width": 100,
+          "height": 100
+        }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 1,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 5,
+        "random": true,
+        "anim": {
+          "enable": false,
+          "speed": 40,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": false,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 6,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "out",
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 1200
+        }
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": false,
+          "mode": "repulse"
+        },
+        "onclick": {
+          "enable": false,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "grab": {
+          "distance": 400,
+          "line_linked": {
+            "opacity": 1
+          }
+        },
+        "bubble": {
+          "distance": 400,
+          "size": 40,
+          "duration": 2,
+          "opacity": 8,
+          "speed": 3
+        },
+        "repulse": {
+          "distance": 200
+        },
+        "push": {
+          "particles_nb": 4
+        },
+        "remove": {
+          "particles_nb": 2
+        }
+      }
+    },
+    "retina_detect": true,
+    "config_demo": {
+      "hide_card": false,
+      "background_color": "#b61924",
+      "background_image": "",
+      "background_position": "50% 50%",
+      "background_repeat": "no-repeat",
+      "background_size": "cover"
+    }
+  }
+
+);
+
+  
+  </script>
 </html>
 
