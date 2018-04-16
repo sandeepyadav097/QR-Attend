@@ -35,7 +35,7 @@ router.post('/createClass', (req, res,next) => {
       if (error) throw error;
       console.log('The solution is: ', results);
     })
-    res.send({success:true})
+    res.render('../views/studentDashboard', {username:username})
 })
 
 router.post('/studentDetails', (req, res,next) => {

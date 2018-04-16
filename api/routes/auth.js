@@ -48,9 +48,9 @@ router.post('/adminAuth',  passport.authenticate('local.two', { failureRedirect:
     if(results[0]==null)
     {
         res.send(null);
-    }
+     }
     else{
-      res.render('../views/adminDashboard', {username:results[0].admin_name});
+     res.render('../views/adminDashboard', {username:results[0].admin_name});
         
     }
  

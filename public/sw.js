@@ -9,9 +9,6 @@ self.addEventListener('install', function (event) {
         cache.addAll([
           '/images/image.jpg',
           '/index'
-
-        
-
         ]);
       })
   );
