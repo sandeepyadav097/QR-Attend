@@ -19,6 +19,31 @@ router.post('/createClass', (req, res,next) => {
     db.query(sql,[Class,sub1,sub2,sub3,sub4,sub5], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
+
+
+      var sql1='create table attendance'+Class+'( student_id int references student_details(student_id), attendance_date varchar(10) , day varchar(10) not null, '+sub1+'  varchar(10) default ? references subject_codes(subject_code)  , '+sub2+'  varchar(10) default ?  references subject_codes(subject_code) , '+sub3+'  varchar(10) default ? references subject_codes(subject_code) , '+sub4+'  varchar(10) default ?  references subject_codes(subject_code) , '+sub5+'  varchar(10) default ? references subject_codes(subject_code)  ,  primary key(student_id,attendance_date)   );'
+        
+
+      db.query(sql1,['N','N','N','N','N'], function (error, results, fields) {
+        if (error) throw error;
+        console.log('The solution is: ', results);
+  
+        var sql3 = 'select * from admin_details where admin_id=?;';
+      
+        db.query(sql3,[req.user], function (error, results, fields) {
+          if (error) throw error;
+          console.log('The solution is: ', results);
+          if(results[0]==null)
+          {
+              res.send(null);
+           }
+          else{
+           res.render('../views/adminDashboard', {username:results[0].admin_name});
+              
+          }
+       
+        })
+      })
     })
 // var cw='classes';
 //     var sql0=`select * from`+' '+cw+`;`
@@ -28,14 +53,8 @@ router.post('/createClass', (req, res,next) => {
     //     console.log('The solution is: ', results);
     //   })
 
-    var sql1='create table attendance'+Class+'( student_id int references student_details(student_id), attendance_date varchar(10) , day varchar(10) not null, '+sub1+'  varchar(10) default ? references subject_codes(subject_code)  , '+sub2+'  varchar(10) default ?  references subject_codes(subject_code) , '+sub3+'  varchar(10) default ? references subject_codes(subject_code) , '+sub4+'  varchar(10) default ?  references subject_codes(subject_code) , '+sub5+'  varchar(10) default ? references subject_codes(subject_code)  ,  primary key(student_id,attendance_date)   );'
-        
 
-    db.query(sql1,['N','N','N','N','N'], function (error, results, fields) {
-      if (error) throw error;
-      console.log('The solution is: ', results);
-    })
-    res.render('../views/studentDashboard', {username:username})
+    
 })
 
 router.post('/studentDetails', (req, res,next) => {
@@ -48,7 +67,21 @@ router.post('/studentDetails', (req, res,next) => {
     db.query(sql,[id,name,Class], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
-      res.send({success:true})
+      var sql3 = 'select * from admin_details where admin_id=?;';
+      
+      db.query(sql3,[req.user], function (error, results, fields) {
+        if (error) throw error;
+        console.log('The solution is: ', results);
+        if(results[0]==null)
+        {
+            res.send(null);
+         }
+        else{
+         res.render('../views/adminDashboard', {username:results[0].admin_name});
+            
+        }
+     
+      })
    
     })
 
@@ -63,7 +96,21 @@ router.post('/teacherDetails', (req, res,next) => {
     db.query(sql,[id,name], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
-      res.send({success:true})
+      var sql3 = 'select * from admin_details where admin_id=?;';
+      
+      db.query(sql3,[req.user], function (error, results, fields) {
+        if (error) throw error;
+        console.log('The solution is: ', results);
+        if(results[0]==null)
+        {
+            res.send(null);
+         }
+        else{
+         res.render('../views/adminDashboard', {username:results[0].admin_name});
+            
+        }
+     
+      })
     })
 })
 
@@ -123,7 +170,21 @@ router.post('/studentAuth', (req, res,next) => {
     db.query(sql,[username,password,id], function (error, results, fields) {
       if (error) throw error;
       console.log('The solution is: ', results);
-      res.send({success:true})
+      var sql3 = 'select * from admin_details where admin_id=?;';
+      
+      db.query(sql3,[req.user], function (error, results, fields) {
+        if (error) throw error;
+        console.log('The solution is: ', results);
+        if(results[0]==null)
+        {
+            res.send(null);
+         }
+        else{
+         res.render('../views/adminDashboard', {username:results[0].admin_name});
+            
+        }
+     
+      })
     })
 })
 router.post('/teacherAuth', (req, res,next) => {
@@ -137,7 +198,21 @@ router.post('/teacherAuth', (req, res,next) => {
       if (error) throw error;
       console.log('The solution is: ', results);
     })
-    res.send({success:true})
+    var sql3 = 'select * from admin_details where admin_id=?;';
+      
+    db.query(sql3,[req.user], function (error, results, fields) {
+      if (error) throw error;
+      console.log('The solution is: ', results);
+      if(results[0]==null)
+      {
+          res.send(null);
+       }
+      else{
+       res.render('../views/adminDashboard', {username:results[0].admin_name});
+          
+      }
+   
+    })
 })
 
 
