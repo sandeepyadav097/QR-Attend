@@ -5,7 +5,7 @@ const db = require('./../../db')
 
 
 router.post('/createClass', (req, res,next) => {
-   
+  var promise1=new Promise(function(resolve,reject){
     var Class = req.body.class;
     var sub1=req.body.sub1;
     var sub2=req.body.sub2;
@@ -17,7 +17,7 @@ router.post('/createClass', (req, res,next) => {
      var sql = `insert into classes values(?,?,?,?,?,?);`;
     
     db.query(sql,[Class,sub1,sub2,sub3,sub4,sub5], function (error, results, fields) {
-      if (error) throw error;
+         if (error)         {                       reject(error);           return;           } 
       console.log('The solution is: ', results);
 
 
@@ -25,13 +25,13 @@ router.post('/createClass', (req, res,next) => {
         
 
       db.query(sql1,['N','N','N','N','N'], function (error, results, fields) {
-        if (error) throw error;
+           if (error)         {                       reject(error);           return;           } 
         console.log('The solution is: ', results);
   
         var sql3 = 'select * from admin_details where admin_id=?;';
       
         db.query(sql3,[req.user], function (error, results, fields) {
-          if (error) throw error;
+             if (error)         {                       reject(error);           return;           } 
           console.log('The solution is: ', results);
           if(results[0]==null)
           {
@@ -49,28 +49,49 @@ router.post('/createClass', (req, res,next) => {
 //     var sql0=`select * from`+' '+cw+`;`
 
     // db.query(sql0, function (error, results, fields) {
-    //     if (error) throw error;
+    //        if (error)         {                       reject(error);           return;           } 
     //     console.log('The solution is: ', results);
     //   })
 
 
+  })
+
+    promise1.catch(function(error) {
+      console.log(error);
+      res.render('../views/wrong', {success:"You have entered an invalid input"});
+    });
     
 })
 
 router.post('/studentDetails', (req, res,next) => {
    
+  var promise1=new Promise(function(resolve,reject){
+
     var id = parseInt(req.body.id);
     var name= req.body.name;
     var Class=req.body.class;
      var sql = `insert into student_details values(?,?,?);`;
     
     db.query(sql,[id,name,Class], function (error, results, fields) {
-      if (error) throw error;
+      if (error) 
+      {
+        reject(error);
+        return;
+
+      }
       console.log('The solution is: ', results);
       var sql3 = 'select * from admin_details where admin_id=?;';
       
       db.query(sql3,[req.user], function (error, results, fields) {
-        if (error) throw error;
+        if (error)
+        {
+          
+
+          reject(error);
+          return;
+
+
+        } 
         console.log('The solution is: ', results);
         if(results[0]==null)
         {
@@ -85,21 +106,29 @@ router.post('/studentDetails', (req, res,next) => {
    
     })
 
+  })
+
+  promise1.catch(function(error) {
+    console.log(error);
+    res.render('../views/wrong', {success:"You have entered an invalid input"});
+  });
+
   
 })
 router.post('/teacherDetails', (req, res,next) => {
-   
+  var promise1=new Promise(function(resolve,reject){
+    
     var id = parseInt(req.body.id);
     var name= req.body.name;
      var sql = `insert into teacher_details values(?,?);`;
     
     db.query(sql,[id,name], function (error, results, fields) {
-      if (error) throw error;
+         if (error)         {                       reject(error);           return;           } 
       console.log('The solution is: ', results);
       var sql3 = 'select * from admin_details where admin_id=?;';
       
       db.query(sql3,[req.user], function (error, results, fields) {
-        if (error) throw error;
+           if (error)         {                       reject(error);           return;           } 
         console.log('The solution is: ', results);
         if(results[0]==null)
         {
@@ -112,6 +141,14 @@ router.post('/teacherDetails', (req, res,next) => {
      
       })
     })
+
+
+  })
+
+    promise1.catch(function(error) {
+      console.log(error);
+      res.render('../views/wrong', {success:"You have entered an invalid input"});
+    });
 })
 
 // router.post('/subjectCodes', (req, res,next) => {
@@ -121,7 +158,7 @@ router.post('/teacherDetails', (req, res,next) => {
 //      var sql = `insert into subject_codes values(?,?);`;
     
 //     db.query(sql,[code,name], function (error, results, fields) {
-//       if (error) throw error;
+//          if (error)         {                       reject(error);           return;           } 
 //       console.log('The solution is: ', results);
 //       res.send({success:true})
 //     })
@@ -137,7 +174,7 @@ router.post('/teacherDetails', (req, res,next) => {
 //      var sql = `insert into subject_teacher_class values(?,?,?);`;
     
 //     db.query(sql,[id,code,Class], function (error, results, fields) {
-//       if (error) throw error;
+//          if (error)         {                       reject(error);           return;           } 
 //       console.log('The solution is: ', results);
 //       res.send({success:true})
 //     })
@@ -155,25 +192,26 @@ router.post('/teacherDetails', (req, res,next) => {
 //      var sql = `insert into teacher_time_table values (?,?,?,?,?,?,?,?)`;
     
 //     db.query(sql,[id,day,Class1,Class2,Class3,Class4,Class5,Class6], function (error, results, fields) {
-//       if (error) throw error;
+//          if (error)         {                       reject(error);           return;           } 
 //       console.log('The solution is: ', results);
 //       res.send({success:true})
 //     })
 // })
 router.post('/studentAuth', (req, res,next) => {
    
+  var promise1=new Promise(function(resolve,reject){
     var username=req.body.username;
     var password=req.body.password;
     var id = parseInt(req.body.id);
      var sql = `insert into student_auth values(?,?,?);`;
     
     db.query(sql,[username,password,id], function (error, results, fields) {
-      if (error) throw error;
+         if (error)         {                       reject(error);           return;           } 
       console.log('The solution is: ', results);
       var sql3 = 'select * from admin_details where admin_id=?;';
       
       db.query(sql3,[req.user], function (error, results, fields) {
-        if (error) throw error;
+           if (error)         {                       reject(error);           return;           } 
         console.log('The solution is: ', results);
         if(results[0]==null)
         {
@@ -186,22 +224,31 @@ router.post('/studentAuth', (req, res,next) => {
      
       })
     })
+
+  })
+
+
+    promise1.catch(function(error) {
+      console.log(error);
+      res.render('../views/wrong', {success:"You have entered an invalid input"});
+    });
 })
 router.post('/teacherAuth', (req, res,next) => {
    
+  var promise1=new Promise(function(resolve,reject){
     var username=req.body.username;
     var password=req.body.password;
     var id = parseInt(req.body.id);
      var sql = `insert into teacher_auth values(?,?,?);`;
     
     db.query(sql,[username,password,id], function (error, results, fields) {
-      if (error) throw error;
+         if (error)         {                       reject(error);           return;           } 
       console.log('The solution is: ', results);
     })
     var sql3 = 'select * from admin_details where admin_id=?;';
       
     db.query(sql3,[req.user], function (error, results, fields) {
-      if (error) throw error;
+         if (error)         {                       reject(error);           return;           } 
       console.log('The solution is: ', results);
       if(results[0]==null)
       {
@@ -213,6 +260,13 @@ router.post('/teacherAuth', (req, res,next) => {
       }
    
     })
+
+  })
+
+    promise1.catch(function(error) {
+      console.log(error);
+      res.render('../views/wrong', {success:"You have entered an invalid input"});
+    });
 })
 
 

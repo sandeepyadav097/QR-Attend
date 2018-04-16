@@ -127,8 +127,8 @@ passport.use('local.two', myLocalStrategy2);
 passport.use('local.three', myLocalStrategy3);
 
 
-app.get('/hello', function(req,res){
-  res.render("admin");
+app.get('/', function(req,res){
+  res.redirect('/index');
 });
 
 app.get('/studentProfile',authenticationMiddleware1 (),(req,res)=>{    
@@ -173,6 +173,24 @@ app.get('/teacherProfile',authenticationMiddleware2 (),(req,res)=>{
   })
 })
 
+app.get('/adminProfile',authenticationMiddleware3 (),(req,res)=>{    
+  var sql = 'select * from admin_details where admin_id=?;';
+    
+  db.query(sql,[req.user], function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results);
+    if(results[0]==null)
+    {
+        res.send(null);
+    }
+    else{
+      res.render('../views/adminDashboard', {username:results[0].admin_name});
+        
+    }
+ 
+  })
+})
+
 app.get('/studentlogin', (req, res)=>{
       res.render('studentLogin');
 });
@@ -210,6 +228,15 @@ app.get('/views/admin', (req, res)=>{
   
         if (req.isAuthenticated()) return next();
         res.redirect('/teacherLogin')
+    }
+  }
+  
+  function authenticationMiddleware3 () {  
+    return (req, res, next) => {
+      console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+  
+        if (req.isAuthenticated()) return next();
+        res.redirect('/adminLogin')
     }
   }
   
