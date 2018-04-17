@@ -1,8 +1,8 @@
 {
   "name": "QRAttend",
   "short_name": "QRAttend",
-  "theme_color": "#2c80c3",
-  "background_color": "#2c80c3",
+  "theme_color": "##FFA726",
+  "background_color": "#FFA726",
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "/index",
